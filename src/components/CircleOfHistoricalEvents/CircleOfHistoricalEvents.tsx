@@ -63,8 +63,16 @@ export function CircleOfHistoricalEvents({
                   onClick={() => handleSelectHistoricalEvent(el.id)}
                   tabIndex={-1}
                 >
-                  {el.title}
+                  {el.buttonTitle}
                 </button>
+                <div
+                  className={classNames(
+                    styles.title,
+                    currentHistoricalEventId === el.id && styles.titleActive,
+                  )}
+                >
+                  {el.title}
+                </div>
               </div>
             </div>
           </div>
