@@ -4,5 +4,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
+.circleOfHistoricalEventsWrapper {
+  position: absolute;
+}
+
+.veryBigYearWrapper {
+  display: flex;
+  gap: 110px;
+}

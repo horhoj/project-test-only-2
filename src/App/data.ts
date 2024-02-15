@@ -218,3 +218,7 @@ export const dataForCircleOfHistoricalEvents: CircleOfHistoricalEventsDataItem[]
     title,
     buttonTitle: (index + 1).toString(),
   }));
+
+export const getDataForCurrentHistoricalDataItemId = (id: number) => {
+  return data.find((el) => el.id === id) ?? null;
+};

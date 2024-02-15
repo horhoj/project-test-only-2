@@ -8,7 +8,7 @@ interface CircleOfHistoricalEventsProps {
   currentHistoricalEventId: number;
 }
 
-const TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT = 150;
+const TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT = 135;
 
 export function CircleOfHistoricalEvents({
   historicalElementsData,
@@ -31,6 +31,7 @@ export function CircleOfHistoricalEvents({
   return (
     <div>
       <div className={styles.CircleOfHistoricalEvents}>
+        <div className={styles.border} />
         {historicalElementsData.map((el, index) => (
           <div
             key={el.id}
