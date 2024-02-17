@@ -1,6 +1,8 @@
 import classNames from 'classnames';
+import { useEffect, useRef, useState } from 'react';
 import styles from './CircleOfHistoricalEvents.module.scss';
 import { CircleOfHistoricalEventsDataItem } from './CircleOfHistoricalEvents.types';
+import { getTransformData } from './CircleOfHistoricalEvents.helpers';
 
 interface CircleOfHistoricalEventsProps {
   historicalElementsData: CircleOfHistoricalEventsDataItem[];
@@ -8,25 +10,48 @@ interface CircleOfHistoricalEventsProps {
   currentHistoricalEventId: number;
 }
 
-const TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT = 135;
+const TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT = 75;
 
 export function CircleOfHistoricalEvents({
   historicalElementsData,
   currentHistoricalEventId,
   onSelectHistoricalEventId,
 }: CircleOfHistoricalEventsProps) {
+  const [angle, setAngle] = useState(0);
+  const [transformTransitionSpeed, setTransformTransitionSpeed] = useState(0);
+  const prevHistoricalEventId = useRef<number>(currentHistoricalEventId);
+
   const handleSelectHistoricalEvent = (id: number) => {
+    prevHistoricalEventId.current = currentHistoricalEventId;
     onSelectHistoricalEventId(id);
   };
 
-  const currentHistoricalEventIdx = historicalElementsData.findIndex(
-    (el) => el.id === currentHistoricalEventId,
-  );
+  useEffect(() => {
+    const idxForNewPosition = historicalElementsData.findIndex(
+      (el) => el.id === currentHistoricalEventId,
+    );
 
-  const currentOffsetForThePositionOfTheActiveHistoricalElement =
-    currentHistoricalEventId === -1
-      ? 0
-      : (360 / historicalElementsData.length) * (currentHistoricalEventIdx + 1);
+    const idxForCurrentPosition = historicalElementsData.findIndex(
+      (el) => el.id === prevHistoricalEventId.current,
+    );
+
+    const transformData = getTransformData({
+      idxForNewPosition,
+      idxForCurrentPosition,
+      length: historicalElementsData.length,
+      currentAngle: angle,
+    });
+
+    if (transformData) {
+      setAngle(transformData.angle);
+      setTransformTransitionSpeed(transformData.transformTransitionSpeed);
+      prevHistoricalEventId.current = currentHistoricalEventId;
+    }
+  }, [
+    historicalElementsData,
+    currentHistoricalEventId,
+    onSelectHistoricalEventId,
+  ]);
 
   return (
     <div>
@@ -40,8 +65,9 @@ export function CircleOfHistoricalEvents({
               transform: `rotateZ(${
                 index * (360 / historicalElementsData.length) +
                 TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT -
-                currentOffsetForThePositionOfTheActiveHistoricalElement
+                angle
               }deg)`,
+              transition: `transform ${transformTransitionSpeed}ms`,
             }}
           >
             <div className={styles.square}>
@@ -51,8 +77,9 @@ export function CircleOfHistoricalEvents({
                   transform: `rotateZ(${
                     -(index * (360 / historicalElementsData.length)) -
                     TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT +
-                    currentOffsetForThePositionOfTheActiveHistoricalElement
+                    angle
                   }deg)`,
+                  transition: `transform ${transformTransitionSpeed}ms`,
                 }}
               >
                 <button
@@ -71,6 +98,9 @@ export function CircleOfHistoricalEvents({
                     styles.title,
                     currentHistoricalEventId === el.id && styles.titleActive,
                   )}
+                  style={{
+                    transition: `transform ${transformTransitionSpeed}ms, opacity ${transformTransitionSpeed}ms`,
+                  }}
                 >
                   {el.title}
                 </div>

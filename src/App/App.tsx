@@ -6,6 +6,7 @@ import {
 } from './data';
 import { CircleOfHistoricalEvents } from '~/components/CircleOfHistoricalEvents';
 import { VeryBigYear } from '~/components/VeryBigYear';
+import { HistoricalEventsPaginator } from '~/components/HistoricalEventsPaginator';
 
 export function App() {
   const [currentHistoricalEventId, setCurrentHistoricalEventId] = useState(1);
@@ -25,6 +26,13 @@ export function App() {
           </div>
           <div className={styles.circleOfHistoricalEventsWrapper}>
             <CircleOfHistoricalEvents
+              historicalElementsData={dataForCircleOfHistoricalEvents}
+              onSelectHistoricalEventId={setCurrentHistoricalEventId}
+              currentHistoricalEventId={currentHistoricalEventId}
+            />
+          </div>
+          <div className={styles.HistoricalEventsPaginator}>
+            <HistoricalEventsPaginator
               historicalElementsData={dataForCircleOfHistoricalEvents}
               onSelectHistoricalEventId={setCurrentHistoricalEventId}
               currentHistoricalEventId={currentHistoricalEventId}
