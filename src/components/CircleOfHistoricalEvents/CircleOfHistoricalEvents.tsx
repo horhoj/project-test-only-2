@@ -6,8 +6,8 @@ import { getTransformData } from './CircleOfHistoricalEvents.helpers';
 
 interface CircleOfHistoricalEventsProps {
   historicalElementsData: CircleOfHistoricalEventsDataItem[];
-  onSelectHistoricalEventId: (id: number) => void;
-  currentHistoricalEventId: number;
+  onSelectHistoricalEventId: (id: string) => void;
+  currentHistoricalEventId: string;
 }
 
 const TOTAL_OFFSET_FOR_THE_POSITION_OF_THE_ACTIVE_HISTORY_ELEMENT = 75;
@@ -19,9 +19,9 @@ export function CircleOfHistoricalEvents({
 }: CircleOfHistoricalEventsProps) {
   const [angle, setAngle] = useState(0);
   const [transformTransitionSpeed, setTransformTransitionSpeed] = useState(0);
-  const prevHistoricalEventId = useRef<number>(currentHistoricalEventId);
+  const prevHistoricalEventId = useRef<string>(currentHistoricalEventId);
 
-  const handleSelectHistoricalEvent = (id: number) => {
+  const handleSelectHistoricalEvent = (id: string) => {
     prevHistoricalEventId.current = currentHistoricalEventId;
     onSelectHistoricalEventId(id);
   };

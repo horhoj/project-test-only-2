@@ -5,8 +5,8 @@ import { ArrowIcon } from '~/assets/icons';
 
 interface HistoricalEventsPaginatorProps {
   historicalElementsData: CircleOfHistoricalEventsDataItem[];
-  onSelectHistoricalEventId: (id: number) => void;
-  currentHistoricalEventId: number;
+  onSelectHistoricalEventId: (id: string) => void;
+  currentHistoricalEventId: string;
 }
 export function HistoricalEventsPaginator({
   historicalElementsData,

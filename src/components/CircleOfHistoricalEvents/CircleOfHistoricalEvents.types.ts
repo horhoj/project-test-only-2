@@ -1,5 +1,5 @@
 export interface CircleOfHistoricalEventsDataItem {
-  id: number;
+  id: string;
   title: string;
   buttonTitle: string;
 }

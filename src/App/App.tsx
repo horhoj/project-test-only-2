@@ -9,7 +9,9 @@ import { VeryBigYear } from '~/components/VeryBigYear';
 import { HistoricalEventsPaginator } from '~/components/HistoricalEventsPaginator';
 
 export function App() {
-  const [currentHistoricalEventId, setCurrentHistoricalEventId] = useState(1);
+  const [currentHistoricalEventId, setCurrentHistoricalEventId] = useState(
+    dataForCircleOfHistoricalEvents[0].id,
+  );
 
   const currentDataItem = useMemo(
     () => getDataForCurrentHistoricalDataItemId(currentHistoricalEventId),
