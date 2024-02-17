@@ -5,6 +5,8 @@ interface GetTransformDataPayload {
   currentAngle: number;
 }
 
+const BASE_TRANSFORM_TRANSITIONS_SPEED = 1000;
+
 export const getTransformData = ({
   currentAngle,
   idxForCurrentPosition,
@@ -20,7 +22,7 @@ export const getTransformData = ({
         : idxForCurrentPosition - i;
     if (idxForNewPosition === currentIdx) {
       const angle = currentAngle - i * (360 / length);
-      const transformTransitionSpeed = i * 1000;
+      const transformTransitionSpeed = i * BASE_TRANSFORM_TRANSITIONS_SPEED;
       return { angle, transformTransitionSpeed };
     }
   }
@@ -34,7 +36,7 @@ export const getTransformData = ({
         : idxForCurrentPosition + i;
     if (idxForNewPosition === currentIdx) {
       const angle = currentAngle + i * (360 / length);
-      const transformTransitionSpeed = i * 1000;
+      const transformTransitionSpeed = i * BASE_TRANSFORM_TRANSITIONS_SPEED;
       return { angle, transformTransitionSpeed };
     }
   }

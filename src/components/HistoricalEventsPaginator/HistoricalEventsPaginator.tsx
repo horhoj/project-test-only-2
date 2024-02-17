@@ -1,5 +1,7 @@
 import { CircleOfHistoricalEventsDataItem } from '../CircleOfHistoricalEvents/CircleOfHistoricalEvents.types';
+import { getDisplayData } from './HistoricalEventsPaginator.helpers';
 import styles from './HistoricalEventsPaginator.module.scss';
+import { ArrowIcon } from '~/assets/icons';
 
 interface HistoricalEventsPaginatorProps {
   historicalElementsData: CircleOfHistoricalEventsDataItem[];
@@ -29,17 +31,27 @@ export function HistoricalEventsPaginator({
     }
   };
 
+  const isPrevDisabled = idx === 0;
+  const isNextDisabled = idx === historicalElementsData.length - 1;
+  const displayData = getDisplayData(idx + 1, historicalElementsData.length, 2);
+
   return (
     <div className={styles.HistoricalEventsPaginator}>
-      <div>
-        {idx + 1}-{historicalElementsData.length}
-      </div>
+      <div className={styles.display}>{displayData}</div>
       <div className={styles.buttonsWrapper}>
-        <button className={styles.button} onClick={handlePev}>
-          {'<'}
+        <button
+          className={styles.button}
+          onClick={handlePev}
+          disabled={isPrevDisabled}
+        >
+          <ArrowIcon isRight={false} />
         </button>
-        <button className={styles.button} onClick={handleNext}>
-          {'>'}
+        <button
+          className={styles.button}
+          onClick={handleNext}
+          disabled={isNextDisabled}
+        >
+          <ArrowIcon isRight={true} />
         </button>
       </div>
     </div>

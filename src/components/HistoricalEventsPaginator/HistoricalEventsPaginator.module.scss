@@ -10,5 +10,20 @@
 }
 
 .button {
-  padding: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+}
+
+.display {
+  font-size: 14px;
+  color: #42567A;
 }
