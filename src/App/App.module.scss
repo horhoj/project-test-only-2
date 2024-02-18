@@ -2,6 +2,16 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  
+  user-select: none;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.topBlock {
+  margin-top: 170px;
+  min-height: 620px;
+  display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -9,15 +19,31 @@
 
 .circleOfHistoricalEventsWrapper {
   position: absolute;
+  z-index: 1;
 }
 
 .veryBigYearWrapper {
   display: flex;
   gap: 110px;
+  position: absolute;
 }
 
-.HistoricalEventsPaginator {
+.HistoricalDateBigTitleWrapper {
   position: absolute;
   left: 0;
   top: 0;
 }
+
+.HistoricalEventsPaginatorWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 80px;
+}
+
+.SliderBlockWrapper {
+  margin-top: 56px;
+  min-height: 500px;
+}
+
+

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CircleOfHistoricalEventsDataItem } from '../CircleOfHistoricalEvents/CircleOfHistoricalEvents.types';
 import { getDisplayData } from './HistoricalEventsPaginator.helpers';
 import styles from './HistoricalEventsPaginator.module.scss';

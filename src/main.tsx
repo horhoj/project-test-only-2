@@ -5,6 +5,9 @@ import '~/styles/globalStyle.scss';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { persistor, store } from './store';
 import { App } from './App';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const container = document.getElementById('root');
 

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import styles from './CircleOfHistoricalEvents.module.scss';
 import { CircleOfHistoricalEventsDataItem } from './CircleOfHistoricalEvents.types';
 import { getTransformData } from './CircleOfHistoricalEvents.helpers';
@@ -26,7 +26,7 @@ export function CircleOfHistoricalEvents({
     onSelectHistoricalEventId(id);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const idxForNewPosition = historicalElementsData.findIndex(
       (el) => el.id === currentHistoricalEventId,
     );

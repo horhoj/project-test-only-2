@@ -13,7 +13,7 @@ export function VeryBigYear({ year, type }: VeryBigYearProps) {
     if (viewYear !== year) {
       setTimeout(() => {
         setViewYear((prev) => (prev > year ? -1 : 1) + prev);
-      }, 60);
+      }, 100);
     }
   }, [year, viewYear]);
 

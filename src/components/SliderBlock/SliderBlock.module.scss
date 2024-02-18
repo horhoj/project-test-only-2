@@ -1,0 +1,61 @@
+.SliderBlock {
+  display: flex;
+  width: calc(100% - 100px);
+  margin-left: 50px;
+  transition: opacity 300ms, margin-top 300ms;
+  padding: 80px;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.swiper {
+  height: auto;
+  width: 100%;
+  position: static !important;
+
+}
+
+
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-left: 80px;
+  cursor: move;
+  user-select: none;
+  width: 400px;
+
+}
+
+.swiper-slide:first-child {
+  padding-left: 100px;
+}
+
+.swiper-slide:last-child {
+  padding-right: 100px;
+}
+
+.sliderHide {
+  opacity: 0;
+  margin-top: 10px;
+}
+
+.year {
+  font-family: Bebas Neue;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3877EE;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  
+  color: #42567A;
+}
