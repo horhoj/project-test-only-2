@@ -30,28 +30,30 @@ export function SliderBlock({ slideListData }: SliderBlockProps) {
   }, [slideListData, setIsHide]);
 
   return (
-    <div
-      className={classNames(styles.SliderBlock, isHide && styles.sliderHide)}
-    >
-      <Swiper
-        modules={[Navigation]}
-        navigation={true}
-        slidesPerView={'auto'}
-        spaceBetween={0}
-        pagination={{
-          clickable: true,
-        }}
-        className={styles.swiper}
+    <div className={styles.SliderBlockExternalWrapper}>
+      <div
+        className={classNames(styles.SliderBlock, isHide && styles.sliderHide)}
       >
-        {data.map((item) => (
-          <SwiperSlide key={item.id} style={{ width: 'auto' }}>
-            <div className={styles.slide}>
-              <div className={styles.year}>{item.year}</div>
-              <div className={styles.text}>{item.text}</div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          modules={[Navigation]}
+          navigation={true}
+          slidesPerView={'auto'}
+          spaceBetween={80}
+          pagination={{
+            clickable: true,
+          }}
+          className={styles.swiper}
+        >
+          {data.map((item) => (
+            <SwiperSlide key={item.id} style={{ width: 'auto' }}>
+              <div className={styles.slide}>
+                <div className={styles.year}>{item.year}</div>
+                <div className={styles.text}>{item.text}</div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }
