@@ -19,7 +19,7 @@ export function CircleOfHistoricalEvents({
 }: CircleOfHistoricalEventsProps) {
   const [angle, setAngle] = useState(0);
   const [transformTransitionSpeed, setTransformTransitionSpeed] = useState(0);
-  const prevHistoricalEventId = useRef<string>(currentHistoricalEventId);
+  const prevHistoricalEventId = useRef<string>(historicalElementsData[0].id);
 
   const handleSelectHistoricalEvent = (id: string) => {
     prevHistoricalEventId.current = currentHistoricalEventId;
