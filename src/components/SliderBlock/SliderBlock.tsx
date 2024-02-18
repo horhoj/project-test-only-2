@@ -7,8 +7,14 @@ import { InfoItem } from '~/App/data';
 
 interface SliderBlockProps {
   slideListData: InfoItem[];
+  isMobile: boolean;
+  children?: React.ReactNode;
 }
-export function SliderBlock({ slideListData }: SliderBlockProps) {
+export function SliderBlock({
+  slideListData,
+  isMobile,
+  children,
+}: SliderBlockProps) {
   const [data, setData] = useState<InfoItem[]>(() => slideListData);
   const [isHide, setIsHide] = useState(false);
 
@@ -30,18 +36,22 @@ export function SliderBlock({ slideListData }: SliderBlockProps) {
   }, [slideListData, setIsHide]);
 
   return (
-    <div className={styles.SliderBlockExternalWrapper}>
+    <div className={styles.SliderBlockExternalWrapper} key={isMobile ? 1 : 2}>
       <div
         className={classNames(styles.SliderBlock, isHide && styles.sliderHide)}
       >
         <Swiper
-          modules={[Navigation]}
-          navigation={true}
+          modules={[Navigation, Pagination]}
+          navigation={!isMobile}
           slidesPerView={'auto'}
-          spaceBetween={80}
-          pagination={{
-            clickable: true,
-          }}
+          spaceBetween={isMobile ? 25 : 80}
+          pagination={
+            isMobile
+              ? {
+                  clickable: true,
+                }
+              : undefined
+          }
           className={styles.swiper}
         >
           {data.map((item) => (
@@ -53,6 +63,7 @@ export function SliderBlock({ slideListData }: SliderBlockProps) {
             </SwiperSlide>
           ))}
         </Swiper>
+        {children && <div className={styles.children}>{children}</div>}
       </div>
     </div>
   );

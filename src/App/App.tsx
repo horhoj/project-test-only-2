@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useWindowSize } from '@uidotdev/usehooks';
 import styles from './App.module.scss';
 import {
   dataForCircleOfHistoricalEvents,
@@ -11,6 +12,8 @@ import { SliderBlock } from '~/components/SliderBlock';
 import { HistoricalDateBigTitle } from '~/components/HistoricalDateBigTitle';
 
 export function App() {
+  const windowSize = useWindowSize();
+
   const [currentHistoricalEventId, setCurrentHistoricalEventId] = useState(
     () => dataForCircleOfHistoricalEvents[0].id,
   );
@@ -20,20 +23,28 @@ export function App() {
     [currentHistoricalEventId],
   );
 
+  const isMobile = windowSize.width !== null && windowSize.width <= 600;
+
   return (
     <div className={styles.App}>
       {currentDataItem && (
         <>
-          <div className={styles.verticalLine} />
-          <div className={styles.horizontalLine} />
+          {!isMobile && (
+            <>
+              <div className={styles.verticalLine} />
+              <div className={styles.horizontalLine} />
+            </>
+          )}
           <div className={styles.topBlock}>
-            <div className={styles.circleOfHistoricalEventsWrapper}>
-              <CircleOfHistoricalEvents
-                historicalElementsData={dataForCircleOfHistoricalEvents}
-                onSelectHistoricalEventId={setCurrentHistoricalEventId}
-                currentHistoricalEventId={currentHistoricalEventId}
-              />
-            </div>
+            {!isMobile && (
+              <div className={styles.circleOfHistoricalEventsWrapper}>
+                <CircleOfHistoricalEvents
+                  historicalElementsData={dataForCircleOfHistoricalEvents}
+                  onSelectHistoricalEventId={setCurrentHistoricalEventId}
+                  currentHistoricalEventId={currentHistoricalEventId}
+                />
+              </div>
+            )}
             <div className={styles.veryBigYearWrapper}>
               <VeryBigYear
                 type={'startYear'}
@@ -44,17 +55,30 @@ export function App() {
             <div className={styles.HistoricalDateBigTitleWrapper}>
               <HistoricalDateBigTitle />
             </div>
-            <div className={styles.HistoricalEventsPaginatorWrapper}>
-              <HistoricalEventsPaginator
-                historicalElementsData={dataForCircleOfHistoricalEvents}
-                onSelectHistoricalEventId={setCurrentHistoricalEventId}
-                currentHistoricalEventId={currentHistoricalEventId}
-              />
-            </div>
+            {!isMobile && (
+              <div className={styles.HistoricalEventsPaginatorWrapper}>
+                <HistoricalEventsPaginator
+                  historicalElementsData={dataForCircleOfHistoricalEvents}
+                  onSelectHistoricalEventId={setCurrentHistoricalEventId}
+                  currentHistoricalEventId={currentHistoricalEventId}
+                />
+              </div>
+            )}
           </div>
 
           <div className={styles.SliderBlockWrapper}>
-            <SliderBlock slideListData={currentDataItem.info} />
+            <SliderBlock
+              slideListData={currentDataItem.info}
+              isMobile={isMobile}
+            >
+              {isMobile && (
+                <HistoricalEventsPaginator
+                  historicalElementsData={dataForCircleOfHistoricalEvents}
+                  onSelectHistoricalEventId={setCurrentHistoricalEventId}
+                  currentHistoricalEventId={currentHistoricalEventId}
+                />
+              )}
+            </SliderBlock>
           </div>
         </>
       )}
