@@ -2,10 +2,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
+  border-left: 1px solid #e2e5ec;
+  border-right: 1px solid #e2e5ec;
   user-select: none;
   max-width: 1440px;
   margin: 0 auto;
+  position: relative;
 }
 
 .topBlock {
@@ -46,4 +48,16 @@
   min-height: 500px;
 }
 
+.verticalLine {
+  height: 100%;
+  border-left: 1px solid #e2e5ec;
+  position: absolute;
+  left: 50%;
+}
 
+.horizontalLine {
+  width: 100%;
+  border-top: 1px solid #e2e5ec;
+  position: absolute;
+  top: 480px;
+}

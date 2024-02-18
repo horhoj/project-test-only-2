@@ -24,10 +24,8 @@ export function App() {
     <div className={styles.App}>
       {currentDataItem && (
         <>
-          {/* <div className={styles.veryBigYearWrapper}>
-            <VeryBigYear type={'startYear'} year={currentDataItem.startYear} />
-            <VeryBigYear type={'endYear'} year={currentDataItem.endYear} />
-          </div> */}
+          <div className={styles.verticalLine} />
+          <div className={styles.horizontalLine} />
           <div className={styles.topBlock}>
             <div className={styles.circleOfHistoricalEventsWrapper}>
               <CircleOfHistoricalEvents
