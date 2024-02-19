@@ -1,5 +1,3 @@
-init: docker-up install prod
-
 #all
 docker-up: docker-down
 	docker-compose up -d --build
@@ -21,11 +19,7 @@ console:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "/bin/bash"
 
 dev:
-	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run dev -- --host=0.0.0.0"
-
-ddev: docker-up install dev
-
-
+	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run start"
 
 prod:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run build"
@@ -39,8 +33,9 @@ lint-check:
 lint-fix:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run lint-fix"
 
-type-check:
-	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run type-check"
-
 test:
 	docker-compose exec --user $(shell id -u):$(shell id -g)  node sh -c "npm run test"
+
+ddev: docker-up install dev
+
+init: docker-up install prod

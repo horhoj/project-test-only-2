@@ -2,7 +2,7 @@
 
 # Используется: 
 
-vite, react, typescript, redux-tookit, docker(docker-compose), nginx (для раздачи статики билда), eslint + prettier
+webpack, react, typescript, redux-tookit, docker(docker-compose), nginx (для раздачи статики билда), eslint + prettier
 
 # запуск
 
