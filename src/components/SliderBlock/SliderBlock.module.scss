@@ -7,7 +7,7 @@
   display: flex;
   width: calc(100% - 100px);
   margin-left: 50px;
-  transition: opacity 300ms, margin-top 300ms;
+
   padding: 80px;
   position: relative;
   padding-top: 0;
@@ -19,10 +19,9 @@
 }
 
 .swiper {
-  // height: 300px;
   width: 100%;
   position: static !important;
-  
+
 }
 
 
@@ -35,9 +34,11 @@
   user-select: none;
   width: 400px;
   padding-bottom: 100px;
+  transition: opacity 300ms, margin-top 300ms;
 
   @media (max-width: 600px) {
     width: 200px;
+
   }
 
 }
@@ -55,6 +56,12 @@
   letter-spacing: 0em;
   text-align: left;
   color: #3877EE;
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+    line-height: 20px;
+
+  }
 }
 
 .text {
@@ -63,6 +70,11 @@
   line-height: 30px;
 
   color: #42567A;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 .children {

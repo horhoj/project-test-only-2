@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import styles from './SliderBlock.module.scss';
 import { InfoItem } from '~/App/data';
+import { Portal } from '~/ui/Portal';
 
 interface SliderBlockProps {
   slideListData: InfoItem[];
@@ -37,14 +38,13 @@ export function SliderBlock({
 
   return (
     <div className={styles.SliderBlockExternalWrapper} key={isMobile ? 1 : 2}>
-      <div
-        className={classNames(styles.SliderBlock, isHide && styles.sliderHide)}
-      >
+      <div className={styles.SliderBlock}>
         <Swiper
           modules={[Navigation, Pagination]}
-          navigation={!isMobile}
+          navigation={!isMobile && !isHide}
           slidesPerView={'auto'}
           spaceBetween={isMobile ? 25 : 80}
+          loop={true}
           pagination={
             isMobile
               ? {
@@ -56,14 +56,23 @@ export function SliderBlock({
         >
           {data.map((item) => (
             <SwiperSlide key={item.id} style={{ width: 'auto' }}>
-              <div className={styles.slide}>
+              <div
+                className={classNames(
+                  styles.slide,
+                  isHide && styles.sliderHide,
+                )}
+              >
                 <div className={styles.year}>{item.year}</div>
                 <div className={styles.text}>{item.text}</div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        {children && <div className={styles.children}>{children}</div>}
+        {children && (
+          <Portal>
+            <div className={styles.children}>{children}</div>
+          </Portal>
+        )}
       </div>
     </div>
   );

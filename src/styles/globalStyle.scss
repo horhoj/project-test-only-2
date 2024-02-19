@@ -71,7 +71,7 @@ body {
   display: none !important;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .swiper-slide {
     opacity: 0.4;
   }
@@ -83,4 +83,15 @@ body {
 
 .swiper-pagination-bullet-active {
   background-color: #42567A !important;
+}
+
+.swiper-pagination {
+  position: fixed !important;
+  height: 100px;
+  background-color: #f4f5f9;
+  bottom: 0;
+  margin: -20px;
+  padding-top: 48px;
+  padding-left: 30px;
+
 }
